@@ -5,7 +5,7 @@ export function Router() {
   return (
     <Routes>
       <Route path="/" element={<DefaultLayout />}>
-        <Route path="/" />
+        <Route path="/" element={<Home />} />
       </Route>
     </Routes>
   );
