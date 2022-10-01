@@ -20,7 +20,6 @@ export const GlobalStyle = createGlobalStyle`
     body, input, select, textarea {
         font-family: 'Roboto', sans-serif;
         font-size: 1rem;
-        line-height: 130%;
         font-weight: 400;
     }
 `;

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
+  padding-bottom: 2rem;
   justify-content: space-between;
-  padding: 2rem;
 `;
 
 export const ActionsHeader = styled.div`
@@ -15,7 +15,7 @@ export const ActionsHeader = styled.div`
 
 export const LocationInfo = styled.div`
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   gap: 0.25rem;
   border-radius: 8px;
