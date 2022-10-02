@@ -122,4 +122,9 @@ export const AddToCart = styled.button`
 
   background: ${(props) => props.theme['purple-dark']};
   color: ${(props) => props.theme['base-card']};
+  transition: background 0.2s;
+
+  &:hover {
+    background: ${(props) => props.theme.purple};
+  }
 `;
