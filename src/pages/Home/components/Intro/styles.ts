@@ -28,3 +28,45 @@ export const InfoSection = styled.div`
     line-height: 130%;
   }
 `;
+
+export const ItemsContainer = styled.div`
+  margin-top: 3.125rem;
+  gap: 1.25rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+`;
+
+const ITEM_COLORS = {
+  yellowDark: 'yellow-dark',
+  yellow: 'yellow',
+  gray: 'base-text',
+  purple: 'purple',
+} as const;
+
+interface ItemProps {
+  color: keyof typeof ITEM_COLORS;
+}
+
+export const Item = styled.div<ItemProps>`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: ${(props) => props.theme['base-button']};
+  min-width: 230px;
+
+  p {
+    color: ${(props) => props.theme['base-text']};
+    font-size: 1rem;
+  }
+
+  span {
+    padding: 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: ${(props) => props.theme[ITEM_COLORS[props.color]]};
+  }
+`;
