@@ -67,7 +67,9 @@ export const BuyContainer = styled.div`
   justify-content: space-between;
   width: 100%;
 
-  h4 {
+  h3 {
+    font-size: 1.5rem;
+    color: ${(props) => props.theme['base-text']};
   }
 `;
 
