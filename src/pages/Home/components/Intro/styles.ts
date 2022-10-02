@@ -16,7 +16,6 @@ export const InfoSection = styled.div`
 
   h1 {
     font-size: 3rem;
-    font-family: 'Baloo 2', monospace;
     color: ${(props) => props.theme['base-title']};
     font-weight: 800;
     line-height: 130%;
