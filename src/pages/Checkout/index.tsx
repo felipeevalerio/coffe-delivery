@@ -1,5 +1,6 @@
 import { CheckoutForm } from './components/CheckoutForm';
-import { CheckoutContainer, ReviewCart } from './styles';
+import { ReviewCart } from './components/ReviewCart';
+import { CheckoutContainer } from './styles';
 
 export function Checkout() {
   function handleCheckoutOrder() {}
@@ -7,7 +8,7 @@ export function Checkout() {
   return (
     <CheckoutContainer onSubmit={handleCheckoutOrder}>
       <CheckoutForm />
-      <ReviewCart></ReviewCart>
+      <ReviewCart />
     </CheckoutContainer>
   );
 }
