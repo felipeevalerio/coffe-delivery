@@ -28,7 +28,6 @@ export const HeaderFormContainer = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 0.5rem;
-  color: ${(props) => props.theme['yellow-dark']};
 `;
 
 export const HeaderInfo = styled.div`
@@ -51,6 +50,52 @@ export const InputFields = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+`;
+
+export const PaymentMethodsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+`;
+
+interface PaymentMethodProps {
+  selected?: boolean;
+}
+
+export const PaymentMethod = styled.button<PaymentMethodProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  border: 0;
+  color: ${(props) => props.theme.purple};
+  background: ${(props) => props.theme['base-button']};
+  border-radius: 6px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  border: 1px solid transparent;
+
+  :hover {
+    background: ${(props) => props.theme['base-hover']};
+  }
+
+  ${(props) =>
+    props.selected &&
+    `
+    background: ${props.theme['purple-light']};
+    border-color: ${props.theme.purple};
+    outline: 0;
+    box-shadow: none;
+  `}
+
+  p {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    line-height: 160%;
+    color: ${(props) => props.theme['base-text']};
+  }
 `;
 
 export const InputArea = styled.div`
@@ -97,8 +142,5 @@ export const Input = styled.input<InputProps>`
 
   ::placeholder {
     color: ${(props) => props.theme['base-label']};
-  }
-
-  :optional {
   }
 `;

@@ -1,4 +1,13 @@
 import {
+  MapPinLine,
+  CurrencyDollar,
+  Bank,
+  CreditCard,
+  Money,
+} from 'phosphor-react';
+import { useState } from 'react';
+
+import {
   AddressForm,
   CheckoutFormContainer,
   HeaderFormContainer,
@@ -6,16 +15,31 @@ import {
   InputFields,
   Input,
   InputArea,
+  PaymentForm,
+  PaymentMethodsContainer,
+  PaymentMethod,
 } from './styles';
-import { MapPinLine } from 'phosphor-react';
+
+export enum PaymentMethodTypes {
+  CREDIT_CARD = 'credit-card',
+  DEBIT_CARD = 'debit-card',
+  MONEY = 'money',
+}
 
 export function CheckoutForm() {
+  const [selectedPaymentMethod, setSelectedPaymentMethod] =
+    useState<PaymentMethodTypes | null>(null);
+
+  function handleSelectPaymentMethod(paymentMethod: PaymentMethodTypes) {
+    setSelectedPaymentMethod(paymentMethod);
+  }
+
   return (
     <CheckoutFormContainer>
       <h4>Complete seu pedido</h4>
       <AddressForm>
         <HeaderFormContainer>
-          <MapPinLine size={22} />
+          <MapPinLine size={22} color="#C47F17" />
           <HeaderInfo>
             <p>Endereço de Entrega</p>
             <p>Informe o endereço onde deseja receber seu pedido</p>
@@ -37,6 +61,48 @@ export function CheckoutForm() {
           </InputArea>
         </InputFields>
       </AddressForm>
+      <PaymentForm>
+        <HeaderFormContainer>
+          <CurrencyDollar color="#8047F8" size={22} />
+          <HeaderInfo>
+            <p>Pagamento</p>
+            <p>
+              O pagamento é feito na entrega. Escolha a forma que deseja pagar
+            </p>
+          </HeaderInfo>
+        </HeaderFormContainer>
+
+        <PaymentMethodsContainer>
+          <PaymentMethod
+            type="button"
+            onClick={() =>
+              handleSelectPaymentMethod(PaymentMethodTypes.CREDIT_CARD)
+            }
+            selected={selectedPaymentMethod === PaymentMethodTypes.CREDIT_CARD}
+          >
+            <CreditCard size={16} />
+            <p>CARTÃO DE CRÉDITO</p>
+          </PaymentMethod>
+          <PaymentMethod
+            type="button"
+            onClick={() =>
+              handleSelectPaymentMethod(PaymentMethodTypes.DEBIT_CARD)
+            }
+            selected={selectedPaymentMethod === PaymentMethodTypes.DEBIT_CARD}
+          >
+            <Bank size={16} />
+            <p>CARTÃO DE DÉBITO</p>
+          </PaymentMethod>
+          <PaymentMethod
+            type="button"
+            onClick={() => handleSelectPaymentMethod(PaymentMethodTypes.MONEY)}
+            selected={selectedPaymentMethod === PaymentMethodTypes.MONEY}
+          >
+            <Money size={16} />
+            <p>DINHEIRO</p>
+          </PaymentMethod>
+        </PaymentMethodsContainer>
+      </PaymentForm>
     </CheckoutFormContainer>
   );
 }
