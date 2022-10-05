@@ -6,18 +6,17 @@ import {
   Money,
 } from 'phosphor-react';
 import { useState } from 'react';
+import { Button } from '../../../../components/Button';
 
 import {
-  AddressForm,
   CheckoutFormContainer,
   HeaderFormContainer,
   HeaderInfo,
   InputFields,
   Input,
   InputArea,
-  PaymentForm,
   PaymentMethodsContainer,
-  PaymentMethod,
+  BaseForm,
 } from './styles';
 
 export enum PaymentMethodTypes {
@@ -37,7 +36,7 @@ export function CheckoutForm() {
   return (
     <CheckoutFormContainer>
       <h4>Complete seu pedido</h4>
-      <AddressForm>
+      <BaseForm>
         <HeaderFormContainer>
           <MapPinLine size={22} color="#C47F17" />
           <HeaderInfo>
@@ -60,8 +59,8 @@ export function CheckoutForm() {
             <Input required placeholder="UF" width="60px" />
           </InputArea>
         </InputFields>
-      </AddressForm>
-      <PaymentForm>
+      </BaseForm>
+      <BaseForm>
         <HeaderFormContainer>
           <CurrencyDollar color="#8047F8" size={22} />
           <HeaderInfo>
@@ -73,7 +72,7 @@ export function CheckoutForm() {
         </HeaderFormContainer>
 
         <PaymentMethodsContainer>
-          <PaymentMethod
+          <Button
             type="button"
             onClick={() =>
               handleSelectPaymentMethod(PaymentMethodTypes.CREDIT_CARD)
@@ -82,8 +81,8 @@ export function CheckoutForm() {
           >
             <CreditCard size={16} />
             <p>CARTÃO DE CRÉDITO</p>
-          </PaymentMethod>
-          <PaymentMethod
+          </Button>
+          <Button
             type="button"
             onClick={() =>
               handleSelectPaymentMethod(PaymentMethodTypes.DEBIT_CARD)
@@ -92,17 +91,17 @@ export function CheckoutForm() {
           >
             <Bank size={16} />
             <p>CARTÃO DE DÉBITO</p>
-          </PaymentMethod>
-          <PaymentMethod
+          </Button>
+          <Button
             type="button"
             onClick={() => handleSelectPaymentMethod(PaymentMethodTypes.MONEY)}
             selected={selectedPaymentMethod === PaymentMethodTypes.MONEY}
           >
             <Money size={16} />
             <p>DINHEIRO</p>
-          </PaymentMethod>
+          </Button>
         </PaymentMethodsContainer>
-      </PaymentForm>
+      </BaseForm>
     </CheckoutFormContainer>
   );
 }

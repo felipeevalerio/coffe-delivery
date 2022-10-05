@@ -78,38 +78,8 @@ export const BuyActions = styled.div`
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-`;
 
-export const Counter = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 38px;
-
-  gap: 0.25rem;
-  padding: 0.5rem;
-  border-radius: 6px;
-
-  background: ${(props) => props.theme['base-button']};
-
-  button {
-    display: flex;
-    align-items: center;
-
-    color: ${(props) => props.theme.purple};
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-    transition: color 0.1s;
-
-    &:hover {
-      color: ${(props) => props.theme['purple-dark']};
-    }
-  }
-
-  p {
-    color: ${(props) => props.theme['base-title']};
-  }
 `;
 
 export const AddToCart = styled.button`

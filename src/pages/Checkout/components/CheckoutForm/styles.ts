@@ -10,19 +10,14 @@ export const CheckoutFormContainer = styled.form`
   }
 `;
 
-const BaseForm = styled.div`
+export const BaseForm = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
   padding: 2.5rem;
   background: ${(props) => props.theme['base-card']};
-  flex: 1;
   border-radius: 6px;
 `;
-
-export const AddressForm = styled(BaseForm)``;
-
-export const PaymentForm = styled(BaseForm)``;
 
 export const HeaderFormContainer = styled.div`
   display: flex;
@@ -57,45 +52,7 @@ export const PaymentMethodsContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-`;
-
-interface PaymentMethodProps {
-  selected?: boolean;
-}
-
-export const PaymentMethod = styled.button<PaymentMethodProps>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  border: 0;
-  color: ${(props) => props.theme.purple};
-  background: ${(props) => props.theme['base-button']};
-  border-radius: 6px;
-  padding: 1rem;
-  cursor: pointer;
-  transition: background 0.2s;
-  border: 1px solid transparent;
-
-  :hover {
-    background: ${(props) => props.theme['base-hover']};
-  }
-
-  ${(props) =>
-    props.selected &&
-    `
-    background: ${props.theme['purple-light']};
-    border-color: ${props.theme.purple};
-    outline: 0;
-    box-shadow: none;
-  `}
-
-  p {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    line-height: 160%;
-    color: ${(props) => props.theme['base-text']};
-  }
+  max-height: 51px;
 `;
 
 export const InputArea = styled.div`
