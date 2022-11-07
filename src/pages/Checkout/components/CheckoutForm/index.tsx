@@ -5,8 +5,6 @@ import {
   CreditCard,
   Money,
 } from 'phosphor-react';
-import { useState } from 'react';
-import { Button } from '../../../../components/Button';
 
 import {
   CheckoutFormContainer,
@@ -19,19 +17,26 @@ import {
   BaseForm,
 } from './styles';
 
-export enum PaymentMethodTypes {
-  CREDIT_CARD = 'credit-card',
-  DEBIT_CARD = 'debit-card',
-  MONEY = 'money',
+import { Button } from '../../../../components/Button';
+import { useFormContext } from 'react-hook-form';
+import { PaymentMethodTypes } from '../..';
+
+interface CheckoutFormProps {
+  selectedPaymentMethod: PaymentMethodTypes | null;
+  handleSelectPaymentMethod: (paymentMethod: PaymentMethodTypes) => void;
 }
 
-export function CheckoutForm() {
-  const [selectedPaymentMethod, setSelectedPaymentMethod] =
-    useState<PaymentMethodTypes | null>(null);
+export function CheckoutForm({
+  selectedPaymentMethod,
+  handleSelectPaymentMethod,
+}: CheckoutFormProps) {
+  const { register, watch } = useFormContext();
 
-  function handleSelectPaymentMethod(paymentMethod: PaymentMethodTypes) {
-    setSelectedPaymentMethod(paymentMethod);
-  }
+  const cep = watch('cep');
+  const formattedCEP = cep
+    .replace(/\D/g, '')
+    .replace(/(\d{5})(\d)/, '$1-$2')
+    .replace(/(-\d{3})\d+?$/, '$1');
 
   return (
     <CheckoutFormContainer>
@@ -45,18 +50,65 @@ export function CheckoutForm() {
           </HeaderInfo>
         </HeaderFormContainer>
         <InputFields>
-          <Input required placeholder="CEP" width="200px" />
-          <Input required placeholder="Rua" />
+          <Input
+            required
+            placeholder="CEP"
+            width="200px"
+            type="text"
+            id="cep"
+            value={formattedCEP}
+            {...register('cep')}
+          />
+          <Input
+            required
+            placeholder="Rua"
+            type="text"
+            id="street"
+            {...register('street')}
+          />
           <InputArea>
-            <Input required placeholder="Número" width="200px" />
+            <Input
+              required
+              placeholder="Número"
+              width="200px"
+              type="number"
+              id="number"
+              min={0}
+              {...register('number', { valueAsNumber: true })}
+            />
             <span>
-              <Input placeholder="Complemento" />
+              <Input
+                placeholder="Complemento"
+                type="text"
+                id="addressDetails"
+                {...register('addressDetails')}
+              />
             </span>
           </InputArea>
           <InputArea>
-            <Input required placeholder="Bairro" width="200px" />
-            <Input required placeholder="Cidade" />
-            <Input required placeholder="UF" width="60px" />
+            <Input
+              required
+              placeholder="Bairro"
+              width="200px"
+              type="text"
+              id="district"
+              {...register('district')}
+            />
+            <Input
+              required
+              placeholder="Cidade"
+              type="text"
+              id="city"
+              {...register('city')}
+            />
+            <Input
+              required
+              placeholder="UF"
+              width="60px"
+              type="text"
+              id="uf"
+              {...register('uf')}
+            />
           </InputArea>
         </InputFields>
       </BaseForm>
@@ -94,8 +146,8 @@ export function CheckoutForm() {
           </Button>
           <Button
             type="button"
-            onClick={() => handleSelectPaymentMethod(PaymentMethodTypes.MONEY)}
             selected={selectedPaymentMethod === PaymentMethodTypes.MONEY}
+            onClick={() => handleSelectPaymentMethod(PaymentMethodTypes.MONEY)}
           >
             <Money size={16} />
             <p>DINHEIRO</p>
@@ -104,4 +156,7 @@ export function CheckoutForm() {
       </BaseForm>
     </CheckoutFormContainer>
   );
+}
+function watch(arg0: string) {
+  throw new Error('Function not implemented.');
 }

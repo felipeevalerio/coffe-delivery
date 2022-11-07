@@ -1,10 +1,11 @@
-import { createContext, ReactNode, useReducer } from 'react';
+import { createContext, ReactNode, useEffect, useReducer } from 'react';
 import { cartReducer, Coffe } from '../reducers/cart/reducer';
 import {
   addToCartAction,
   removeFromCartAction,
   minusCoffeQuantityAction,
   plusCoffeQuantityAction,
+  clearCartAction,
 } from '../reducers/cart/actions';
 
 interface ICartContext {
@@ -13,6 +14,7 @@ interface ICartContext {
   removeFromCart: (name: string) => void;
   plusCoffeQuantity: (coffe: Coffe) => void;
   minusCoffeQuantity: (coffe: Coffe) => void;
+  clearCart: () => void;
 }
 
 interface CartProviderProps {
@@ -22,7 +24,19 @@ interface CartProviderProps {
 export const CartContext = createContext({} as ICartContext);
 
 export function CartProvider({ children }: CartProviderProps) {
-  const [cart, dispatch] = useReducer(cartReducer, []);
+  const [cart, dispatch] = useReducer(cartReducer, [], () => {
+    const cartAsJSON = localStorage.getItem('@coffe-delivery-1.0.0:cart');
+    if (cartAsJSON) {
+      return JSON.parse(cartAsJSON);
+    } else {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    const cartString = JSON.stringify(cart);
+    localStorage.setItem('@coffe-delivery-1.0.0:cart', cartString);
+  }, [cart]);
 
   function addToCart(coffe: Coffe) {
     dispatch(addToCartAction(coffe));
@@ -40,6 +54,10 @@ export function CartProvider({ children }: CartProviderProps) {
     dispatch(minusCoffeQuantityAction(coffe));
   }
 
+  function clearCart() {
+    dispatch(clearCartAction());
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -48,6 +66,7 @@ export function CartProvider({ children }: CartProviderProps) {
         minusCoffeQuantity,
         plusCoffeQuantity,
         removeFromCart,
+        clearCart,
       }}
     >
       {children}

@@ -1,6 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { CartProvider } from './context/CartContext';
+import { OrderProvider } from './context/OrderContext';
 
 import { Router } from './Router';
 import { GlobalStyle } from './styles/global';
@@ -11,7 +12,9 @@ export function App() {
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
         <CartProvider>
-          <Router />
+          <OrderProvider>
+            <Router />
+          </OrderProvider>
         </CartProvider>
         <GlobalStyle />
       </BrowserRouter>

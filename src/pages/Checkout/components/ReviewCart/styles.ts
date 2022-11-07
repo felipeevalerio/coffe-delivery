@@ -46,3 +46,21 @@ export const InfoItem = styled.div`
     font-size: 1.25rem;
   }
 `;
+
+export const ConfirmOrderButton = styled.button`
+  background: ${(props) => props.theme.yellow};
+  color: ${(props) => props.theme.white};
+  font-size: 0.875rem;
+  font-weight: bold;
+  margin-top: 0.75rem;
+  cursor: pointer;
+  border: 0;
+  border-radius: 6px;
+  padding: 0.75rem;
+  width: 100%;
+  transition: background 0.2s;
+
+  &:hover {
+    background: ${(props) => props.theme['yellow-dark']};
+  }
+`;

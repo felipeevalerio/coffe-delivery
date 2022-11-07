@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const CheckoutFormContainer = styled.form`
+export const CheckoutFormContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -83,6 +83,7 @@ interface InputProps {
 
 export const Input = styled.input<InputProps>`
   border-radius: 4px;
+  text-transform: capitalize;
   width: 100%;
   background: ${(props) => props.theme['base-input']};
   font-size: 0.875rem;
@@ -99,5 +100,9 @@ export const Input = styled.input<InputProps>`
 
   ::placeholder {
     color: ${(props) => props.theme['base-label']};
+  }
+
+  &#uf {
+    text-transform: uppercase;
   }
 `;

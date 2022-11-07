@@ -5,6 +5,7 @@ export enum ActionTypes {
   PLUS_COFFE_QUANTITY = 'plusCoffeQuantity',
   MINUS_COFFE_QUANTITY = 'minusCoffeQuantity',
   REMOVE_FROM_CART = 'removeFromCart',
+  CLEAR_CART = 'clearCart',
 }
 
 export function addToCartAction(coffe: Coffe) {
@@ -32,5 +33,11 @@ export function minusCoffeQuantityAction(coffe: Coffe) {
   return {
     type: ActionTypes.MINUS_COFFE_QUANTITY,
     payload: coffe,
+  };
+}
+
+export function clearCartAction() {
+  return {
+    type: ActionTypes.CLEAR_CART,
   };
 }

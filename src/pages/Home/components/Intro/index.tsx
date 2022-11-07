@@ -1,7 +1,8 @@
 import { ShoppingCart, Timer, Package, Coffee } from 'phosphor-react';
 
-import { InfoSection, IntroContainer, ItemsContainer, Item } from './styles';
+import { InfoSection, IntroContainer, ItemsContainer } from './styles';
 import introImg from '../../../../assets/intro.svg';
+import { ItemWithIcon } from '../../../../components/ItemWithIcon';
 
 export function Intro() {
   return (
@@ -13,30 +14,24 @@ export function Intro() {
           hora
         </p>
         <ItemsContainer>
-          <Item color="yellowDark">
-            <span>
-              <ShoppingCart size={16} weight="fill" />
-            </span>
+          <ItemWithIcon
+            color="yellowDark"
+            icon={<ShoppingCart size={16} weight="fill" />}
+          >
             <p>Compra simples e segura</p>
-          </Item>
-          <Item color="gray">
-            <span>
-              <Package size={16} weight="fill" />
-            </span>
+          </ItemWithIcon>
+          <ItemWithIcon color="gray" icon={<Package size={16} weight="fill" />}>
             <p>Embalagem mantém o café intacto</p>
-          </Item>
-          <Item color="yellow">
-            <span>
-              <Timer size={16} weight="fill" />
-            </span>
+          </ItemWithIcon>
+          <ItemWithIcon color="yellow" icon={<Timer size={16} weight="fill" />}>
             <p>Entrega rápida e rastreada</p>
-          </Item>
-          <Item color="purple">
-            <span>
-              <Coffee size={16} weight="fill" />
-            </span>
+          </ItemWithIcon>
+          <ItemWithIcon
+            color="purple"
+            icon={<Coffee size={16} weight="fill" />}
+          >
             <p>O café chega fresquinho até você</p>
-          </Item>
+          </ItemWithIcon>
         </ItemsContainer>
       </InfoSection>
       <img

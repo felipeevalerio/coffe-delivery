@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import {
+  ConfirmOrderButton,
   ConfirmOrderContainer,
   InfoItem,
   ReviewCartContainer,
@@ -45,16 +46,17 @@ export function ReviewCart() {
               <p>Total de itens:</p>
               <p>{formattedTotalAmountOfItemsPrice}</p>
             </InfoItem>
-
             <InfoItem>
               <p>Entrega:</p>
               <p>{formattedDeliveryTax}</p>
             </InfoItem>
-
             <InfoItem>
               <strong>Total:</strong>
               <strong>{getTotalOrderAmountInBRL()}</strong>
             </InfoItem>
+            <ConfirmOrderButton type="submit">
+              Confirmar pedido
+            </ConfirmOrderButton>
           </ConfirmOrderContainer>
         ) : (
           <p>Ainda não tem nada no seu carrinho!</p>

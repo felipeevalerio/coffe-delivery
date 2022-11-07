@@ -70,6 +70,9 @@ export function cartReducer(state: Coffe[], action: any): Coffe[] {
       });
     }
 
+    case ActionTypes.CLEAR_CART:
+      return [];
+
     default:
       return state;
   }
